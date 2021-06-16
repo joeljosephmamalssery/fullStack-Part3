@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "## Exercises from part3 of full stack open 2021",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joel",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeljosephmamalssery/fullStack-Part3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joeljosephmamalssery/fullStack-Part3/issues"
+  },
+  "homepage": "https://github.com/joeljosephmamalssery/fullStack-Part3#readme"
+}
