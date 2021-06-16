@@ -1,7 +1,12 @@
 const { request, response } = require('express');
+var morgan = require('morgan');
 const express = require('express');
 const app = express();
 app.use(express.json());
+
+morgan.token('body', (req, res) => JSON.stringify(req.body));
+app.use(morgan(':method :url :status :response-time ms :body'));
+
 const generateId = () => {
   const id = parseInt(Date.now() * Math.random());
   return id;
@@ -62,7 +67,6 @@ app.delete('/api/persons/:id', (request, response) => {
 app.post('/api/persons', (request, response) => {
   const body = request.body;
   const person = persons.filter((person) => person.name === body.name);
-  console.log(person, typeof person);
   if (!body.name || !body.number) {
     return response.status(400).json({
       error: 'content missing',
@@ -78,7 +82,7 @@ app.post('/api/persons', (request, response) => {
       id: generateId(),
     };
     persons = persons.concat(person);
-    console.log(persons, typeof persons);
+
     response.json(person);
   }
 });
