@@ -1,4 +1,4 @@
-GET http://localhost:3000/api/persons
+GET http://localhost:3001/api/persons
 ###
 GET http://localhost:3001/info
 ###
@@ -14,4 +14,5 @@ Content-Type: application/json
 "number": "74743374"
 }
 ###
-GET http://localhost:3000/info
+
+GET http://localhost:3000/
