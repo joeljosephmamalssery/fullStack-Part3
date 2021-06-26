@@ -4,10 +4,17 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 const cors = require('cors');
+const { dirname } = require('path');
 app.use(cors());
+app.use(express.static('/build'));
 morgan.token('body', (req, res) => JSON.stringify(req.body));
 app.use(morgan(':method :url :status :response-time ms :body'));
-
+// app.use(express.static(path.resolve(__dirname, './build')));
+// app.get('/a', (req, res) => {
+//   // res.sendFile('/build/index.html');
+//   res.send('Hello World!');
+// });
+console.log(__dirname);
 const generateId = () => {
   const id = parseInt(Date.now() * Math.random());
   return id;
