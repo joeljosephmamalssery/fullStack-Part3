@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "## Exercises from part3 of full stack open 2021",
   "main": "index.js",
+  
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
@@ -11,6 +12,7 @@
   "author": "Joel",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   },
