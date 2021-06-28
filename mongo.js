@@ -28,10 +28,6 @@ const Contact = mongoose.model('Contact', contactSchema);
 if (process.argv.length < 4) {
   Contact.find({}).then((result) => {
     contacts = result;
-    // result.forEach((contact) => {
-    //   console.log(contact);
-    // });
-    // console.log(contacts);
     console.log('Phonebook');
     contacts.forEach((contact) => {
       console.log(contact.name, contact.number);
