@@ -35,7 +35,7 @@ app.get('/info', (request, response, next) => {
   Contact.find({})
     .then((contacts) => {
       response.send(
-        `<div><h2>Phonebook has info of ${contacts.length} people</h2><h3>${date}</h3></div>`
+        `<div><h2>Phonebook has info of ${contacts.length} people</h2><h4>${date}</h4></div>`
       );
     })
     .catch((error) => next(error));
