@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 
 if (process.argv.length < 3) {
   console.log(
@@ -19,10 +20,10 @@ mongoose.connect(url, {
 });
 
 const contactSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: { type: String, required: true, unique: true },
+  number: { type: String, required: true, unique: true },
 });
-
+contactSchema.plugin(uniqueValidator);
 const Contact = mongoose.model('Contact', contactSchema);
 
 if (process.argv.length < 4) {

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 require('dotenv').config();
 const url = process.env.MONGODB_URI;
 mongoose
@@ -15,10 +16,10 @@ mongoose
     console.log('error connecting to MongoDB:', error.message);
   });
 const contactSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: { type: String, required: true, minlength: 3, unique: true },
+  number: { type: String, required: true, minlength: 8 },
 });
-
+contactSchema.plugin(uniqueValidator);
 contactSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();

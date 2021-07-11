@@ -63,7 +63,7 @@ app.get('/info', (request, response, next) => {
 //   response.status(204).send(`<h1>Contents of ${person} deleted</h1>`).end();
 // });
 
-app.post('/api/persons', (request, response) => {
+app.post('/api/persons', (request, response, next) => {
   const body = request.body;
   // const person = persons.filter((person) => person.name === body.name);
   if (!body.name || !body.number) {
@@ -81,10 +81,13 @@ app.post('/api/persons', (request, response) => {
       name: body.name,
       number: body.number,
     });
-    contact.save().then((result) => {
-      console.log('contact saved!');
-      // mongoose.connection.close();
-    });
+    contact
+      .save()
+      .then((result) => {
+        console.log('contact saved!');
+        // mongoose.connection.close();
+      })
+      .catch((error) => next(error));
   }
 });
 app.put('/api/persons/:id', (request, response, next) => {
@@ -117,6 +120,8 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' });
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message });
   }
 
   next(error);
